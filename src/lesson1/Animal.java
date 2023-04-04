@@ -1,9 +1,13 @@
+package lesson1;
+
 import java.sql.SQLOutput;
 
-public class Animal {
+public abstract class Animal {
     public String name;
     private String color;
     private int pawsCount;
+
+    private static int animalsCount = 0;
 
     public String getType(){
         return this.getClass().getSimpleName();
@@ -36,19 +40,24 @@ public class Animal {
         this.name = name;
         this.color = color;
         this.pawsCount = pawsCount;
+
     }
 
-
-
-    public void speak(){
-        System.out.println("МЯяяу");
+    public static int getAnimalsCount(){
+        return animalsCount;
     }
-    public Animal(String name){
-        this(name,null,0);
+
+    public Animal(String name) {
+        this.name = name;
+        animalsCount++;
     }
+
+    public abstract void speak();
+
+    public abstract void hunt();
 
     @Override
     public String toString() {
-        return String.format("Имя: %s, Цвет: %S", this.name,this.color);
+        return String.format("Имя: %s", this.name);
     }
 }
